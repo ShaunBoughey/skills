@@ -1,0 +1,33 @@
+{
+  "skill_name": "jira-fetch",
+  "evals": [
+    {
+      "id": 1,
+      "name": "happy-path-real-ticket",
+      "prompt": "/jira-fetch <REPLACE-WITH-REAL-DEV-KEY>",
+      "expected_output": "Writes runs/<KEY>/jira.json with full schema populated; renders compact summary in chat with status, labels, comments count, linked + similar tickets, and a 'Next: /triage <KEY>' hint.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "missing-ticket-key",
+      "prompt": "/jira-fetch ZZZZ-99999",
+      "expected_output": "Aborts with a friendly 'ticket not found / no permission' error that names the key. No jira.json written. No similar-search attempted.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "refetch-without-force",
+      "prompt": "/jira-fetch <REPLACE-WITH-ALREADY-FETCHED-KEY>",
+      "expected_output": "Detects existing runs/<KEY>/jira.json, prints 'already fetched' message with relative age, points at --force, prints 'Next: /triage <KEY>'. Does not re-call acli.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "refetch-with-force",
+      "prompt": "/jira-fetch <REPLACE-WITH-ALREADY-FETCHED-KEY> --force",
+      "expected_output": "Refetches and overwrites jira.json. New fetched_at timestamp in the file. Renders fresh compact summary.",
+      "files": []
+    }
+  ]
+}
