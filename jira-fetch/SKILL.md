@@ -159,4 +159,4 @@ Adaptations:
 - Search skipped (no usable keyword) → omit the `Similar:` line entirely
 - Search failed → `Similar: (search failed: <error>)`
 
-Always include the `Next: /triage <KEY>` line — it's the next step in the workflow.
+Always include the `Next: /jira-triage <KEY>` line — it's the next step in the workflow.
